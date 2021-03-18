@@ -3,7 +3,7 @@ plugins {
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
-
+apply plugin: 'maven-publish'
 group = 'com.thangam'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
@@ -19,4 +19,19 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.thangam'
+            artifactId = 'sample'
+            version = "0.0.1-SNAPSHOT"
+            from components.java
+
+            pom {
+                name = 'My Library'
+                description = 'A description of my library'
+            }
+        }
+    }
 }
